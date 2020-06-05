@@ -1,5 +1,5 @@
-README file for Micro 8088 / Xi 8088 / Sergey's XT BIOS
-=======================================================
+README file for Micro 8088 / Xi 8088 / Sergey's XT BIOS (alternative version)
+=============================================================================
 
 BIOS Images
 -----------
@@ -15,6 +15,13 @@ bios-sergey-xt-xtide.bin  - BIOS image for Sergey's XT Version 1.0 with XT-IDE
 TODO:
 - Xi 8088: Debug mouse issue with Intel 8242
 - Xi 8088: Debug issues with Microsoft and Logitech mouse drivers
+
+Changes - Version 0.9.8a
+------------------------
+
+- POST code visualization in debug mode (#define DEBUG in config.inc)
+- The Intel Inside tune is moved until just before the video card initializes.
+- Short beep once the video card has been initialized, and prior to the copyright message.
 
 Changes - Version 0.9.8
 -----------------------
