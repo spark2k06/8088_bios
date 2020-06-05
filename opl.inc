@@ -163,12 +163,17 @@ opl_init:
 
 	ret
 
+; opl_print
+; Input:
+;	al, OPL card type
+; Output:
+;	none, destroys some registers
+;-------------------------------------------------------------------------
+	
 opl_print:
 
 	mov	si,msg_oplcard
-	call	print
-	call opl_init
-	
+	call	print	
 	cmp al, 00000001b ; 388h OPL2
 	jnz .next1
 	mov	si,msg_adlib

@@ -228,6 +228,7 @@ fdc_media_state	equ	90h	; byte[4] - drive media state (drives 0 - 3)
 fdc_cylinder	equ	94h	; byte[2] - current cylinder (drives 0 - 1)
 kbd_flags_3	equ	96h	; byte - keyboard status flags 3
 kbd_flags_4	equ	97h	; byte - keyboard status flags 4
+opl_type	equ	98h ; byte - OPL type card
 prt_scrn_flags	equ	100h	; byte - print screen flags
 prt_scrn_ready	equ	00h	;	print screen is not in progress
 prt_scrn_run	equ	01h	; 	print screen is in progress
@@ -1087,7 +1088,9 @@ low_ram_ok:
 ; Play "power on" sound - also tests PIT functionality
 
 	mov     al,e_pit_init	
-	out	post_reg,al
+	out	post_reg,al	
+	call	opl_init
+	mov [opl_type], al
 	call	sound
 
 ; 
@@ -1163,6 +1166,7 @@ low_ram_ok:
 	call	print_rtc		; print current RTC time
 %endif ; AT_RTC
 	call	print_display		; print display type
+	mov al, [opl_type]
 	call 	opl_print			; print OPL card type
 %ifdef PS2_MOUSE
 	call	print_mouse		; print mouse presence

@@ -37,15 +37,15 @@ notes	dw	pic_freq/554		; D flat
 ;=========================================================================
 ; sound - Play power-on sound.
 ; Input:
-;	none
+;	al, OPL card type
 ; Output:
 ;	none, destroys some registers
 ;-------------------------------------------------------------------------
 sound:
-	
-	call opl_init		; Check OPL card type
+		
 	and al, 1			; 388h OPL2 compatible available?
 	cmp al, 1
+	
 	jz play_intel		; Plays sinfony	with OPL2	
 						; Else through PC-Speaker
 	cld					
